@@ -25,10 +25,17 @@
   [data-reveal-anim="slide"] { transform: translateX(-46px); }
   [data-reveal-anim="slide"][data-reveal="in"] { transform: translateX(0); }
   @keyframes logoFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+  @keyframes waFabPulse { 0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(145, 129, 81, 0.55); } 50% { transform: translateY(-6px) scale(1.06); box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35), 0 0 0 14px rgba(145, 129, 81, 0); } }
   @keyframes heroFade { 0% { opacity: 1; } 33.3% { opacity: 1; } 41.3% { opacity: 0; } 91.7% { opacity: 0; } 100% { opacity: 1; } }
   a { color: #0b3a7a; text-decoration: none; } a:hover { color: #2a73ab; }
   html { scroll-behavior: smooth; }
   section[id] { scroll-margin-top: 64px; }
+  @media (max-width: 768px) {
+    .dc-nav-link { display: none !important; }
+    .dc-header-wa { display: none !important; }
+    .dc-header-cta { display: none !important; }
+    .dc-hamburger { display: flex !important; }
+  }
 </style>
 <script src="./scripts/image-slot.js"></script>
 </helmet>
@@ -46,9 +53,25 @@
     </div>
     <nav style="display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 2px 3px; font-size: {{ navFont }}px; white-space: nowrap; min-width: 0;">
       <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
-        <a href="{{ n.href }}" onClick="{{ n.onClick }}" style="{{ n.style }}" style-hover="{{ n.hoverStyle }}" style-active="{{ n.activeStyle }}">{{ n.label }}</a>
+        <a href="{{ n.href }}" onClick="{{ n.onClick }}" class="dc-nav-link" style="{{ n.style }}" style-hover="{{ n.hoverStyle }}" style-active="{{ n.activeStyle }}">{{ n.label }}</a>
       </sc-for>
-      <a href="#contact" style="background: linear-gradient(135deg, #a3905c, #918151); color: #ffffff; padding: 8px 16px; font-size: 13px; border-radius: {{ ctaRadius }}px; margin-right: 4px; box-shadow: 0 6px 16px rgba(145, 129, 81, 0.35); animation: dropFromTop 0.5s ease-out 0.05s both;" style-hover="background: #7a6c43; color: #ffffff; transform: translateY(-1px);">تواصل معنا الآن</a>
+      <a href="#contact" class="dc-header-cta" style="background: linear-gradient(135deg, #a3905c, #918151); color: #ffffff; padding: 8px 16px; font-size: 13px; border-radius: {{ ctaRadius }}px; margin-right: 4px; box-shadow: 0 6px 16px rgba(145, 129, 81, 0.35); animation: dropFromTop 0.5s ease-out 0.05s both;" style-hover="background: #7a6c43; color: #ffffff; transform: translateY(-1px);">تواصل معنا الآن</a>
+      <!-- TODO: WhatsApp link - سيتم تزويده لاحقاً -->
+      <a href="#" aria-label="تواصل عبر واتساب" title="واتساب" class="dc-header-wa" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex-shrink: 0; margin-right: 12px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); box-shadow: 0 6px 16px rgba(145, 129, 81, 0.35); transition: background .2s, color .2s, box-shadow .2s, transform .1s; animation: dropFromTop 0.5s ease-out 0.05s both;" style-hover="background: #7a6c43; transform: translateY(-1px);">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path d="M8.5 9.2c0-.4.2-.8.5-1l.7-.6c.3-.2.7-.2.9.1l1 1.9c.2.3.1.6-.1.9l-.6.7c.5 1.2 1.5 2.2 2.7 2.7l.7-.6c.3-.2.6-.3.9-.1l1.9 1c.3.2.3.6.1.9l-.6.7c-.2.3-.6.5-1 .5-3.9-.3-6.9-3.3-7.1-7.1z"/></svg>
+      </a>
+      <button aria-label="فتح القائمة" aria-expanded="{{ mobileMenuOpen }}" onClick="{{ toggleMobileMenu }}" class="dc-hamburger" style="display: none; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: 6px; flex-shrink: 0; border-radius: 10px; background: rgba(11, 58, 122, 0.07); border: 1px solid rgba(11, 58, 122, 0.18); cursor: pointer; padding: 0; transition: background .2s, color .2s, box-shadow .2s, transform .1s;" style-hover="background: rgba(11, 58, 122, 0.14);">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b3a7a" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="{{ hamburgerIconStyle }}"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0b3a7a" stroke-width="2" stroke-linecap="round" aria-hidden="true" style="{{ closeIconStyle }}"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <sc-if value="{{ mobileMenuOpen }}">
+        <div class="dc-mobile-menu-panel" style="{{ mobileMenuPanelStyle }}">
+          <div style="position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, rgba(145, 129, 81, 0), #918151 30%, #c8b98c 50%, #918151 70%, rgba(145, 129, 81, 0));"></div>
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="5">
+            <a href="{{ n.href }}" onClick="{{ n.onClick }}" style="{{ n.style }}" style-hover="{{ n.hoverStyle }}" style-active="{{ n.activeStyle }}">{{ n.label }}</a>
+          </sc-for>
+        </div>
+      </sc-if>
     </nav>
   </header>
 
@@ -59,6 +82,7 @@
       <img src="assets/brand/hero-3.png" alt="مطرقة القاضي والوثائق" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroFade 18s linear infinite; animation-delay: 12s;">
     </div>
     <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 32, 66, 0.55) 0%, rgba(11, 58, 122, 0.3) 40%, rgba(11, 58, 122, 0.25) 100%);"></div>
+    <div style="position: absolute; inset: 0; background: url('assets/brand/hero-pattern-overlay.png') center / cover no-repeat; opacity: 0.3; pointer-events: none;"></div>
     <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, rgba(145, 129, 81, 0), #918151 35%, #c8b98c 50%, #918151 65%, rgba(145, 129, 81, 0));"></div>
     <div style="position: relative; max-width: 900px; margin: 0 auto; text-align: center; padding: 40px 32px 46px; color: #ffffff; pointer-events: none;">
       <div style="margin: 0 auto 24px; animation: logoFloat 4s ease-in-out infinite; width: 160px;">
@@ -77,13 +101,13 @@
     </div>
   </section>
 
-  <section id="about" data-screen-label="عن شركتنا" style="background: linear-gradient(160deg, #f5f6f9 0%, #eceef4 55%, #e4e8f0 100%); border: 1px solid rgba(145, 129, 81, 0.25); border-radius: 24px; margin: 7px; padding: 44px 48px; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 48px; align-items: stretch; overflow: hidden; position: relative; animation: riseIn 0.9s ease-out 0.15s both;">
+  <section id="about" data-screen-label="عن شركتنا" style="background: linear-gradient(160deg, #f5f6f9 0%, #eceef4 55%, #e4e8f0 100%); border: 1px solid rgba(145, 129, 81, 0.25); border-radius: 24px; margin: 7px; padding: 44px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; align-items: stretch; overflow: hidden; position: relative; animation: riseIn 0.9s ease-out 0.15s both;">
     <div style="position: absolute; top: 0; right: 0; width: 240px; height: 4px; background: linear-gradient(to left, #918151, rgba(145, 129, 81, 0)); border-radius: 0 24px 0 0;"></div>
     <div style="position: relative;">
       <div style="color: #918151; font-size: 15px; letter-spacing: 1px; margin-bottom: 8px; animation: slideFromRight 0.9s ease-out 0.35s both;">عن شركتنا</div>
       <h2 style="margin: 0 0 14px; font-size: 30px; color: #0b3a7a; animation: slideFromRight 0.9s ease-out 0.45s both;">نبذة عنا</h2>
       <div style="width: 64px; height: 3px; background: #918151; border-radius: 999px; margin-bottom: 20px; animation: slideFromRight 0.9s ease-out 0.5s both;"></div>
-      <p style="font-size: 15px; line-height: 2; margin: 0; color: #2c3e5d; text-align: justify; text-justify: inter-word; animation: slideFromRight 0.9s ease-out 0.6s both;">نحن شركة ترائي للمحاماة والاستشارات القانونية شركة مهنية ذات مسؤولية محدودة، مرخص لها بتقديم الخدمات القانونية من قِبل وزارة العدل في المملكة العربية السعودية، يعمل بها مجموعة من المحامين والمستشارين الحاصلين على درجات عليا وخبرات ممتدة لأكثر من خمس سنوات في عدة تخصصات كالعمالي والتجاري والإداري والأحوال الشخصية والمنازعات المدنية وأعمال التحكيم والتدريب والدراسات المتخصصة والدقيقة والحماية الوقائية للمستثمرين في الداخل والخارج، لنشكل بذلك مجموعة متكاملة وواسعة من خدمات المحاماة والاستشارات القانونية والشرعية وفق أعلى معايير الجودة.</p>
+      <p style="font-size: 15px; line-height: 2; margin: 0; color: #2c3e5d; text-align: justify; text-justify: inter-word; text-align-last: right; animation: slideFromRight 0.9s ease-out 0.6s both;">نحن شركة ترائي للمحاماة والاستشارات القانونية شركة مهنية ذات مسؤولية محدودة، مرخص لها بتقديم الخدمات القانونية من قِبل وزارة العدل في المملكة العربية السعودية، يعمل بها مجموعة من المحامين والمستشارين الحاصلين على درجات عليا وخبرات ممتدة لأكثر من خمس سنوات في عدة تخصصات كالعمالي والتجاري والإداري والأحوال الشخصية والمنازعات المدنية وأعمال التحكيم والتدريب والدراسات المتخصصة والدقيقة والحماية الوقائية للمستثمرين في الداخل والخارج، لنشكل بذلك مجموعة متكاملة وواسعة من خدمات المحاماة والاستشارات القانونية والشرعية وفق أعلى معايير الجودة.</p>
       <div style="display: flex; gap: 28px; margin-top: 24px; animation: slideFromRight 0.9s ease-out 0.7s both;">
         <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #0b3a7a;">
           <div style="width: 8px; height: 8px; border-radius: 50%; background: #918151;"></div>
@@ -315,12 +339,19 @@
       </div>
     </div>
   </footer>
+
+  <!-- TODO: WhatsApp link - سيتم تزويده لاحقاً -->
+  <a href="#" aria-label="تواصل عبر واتساب" title="واتساب" style="position: fixed; bottom: 24px; right: 24px; width: 66px; height: 66px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35); z-index: 25; animation: waFabPulse 2.4s ease-in-out infinite; transition: background .2s, color .2s, box-shadow .2s, transform .1s;" style-hover="background: #7a6c43; transform: translateY(-2px) scale(1.06); animation-play-state: paused;">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path d="M8.5 9.2c0-.4.2-.8.5-1l.7-.6c.3-.2.7-.2.9.1l1 1.9c.2.3.1.6-.1.9l-.6.7c.5 1.2 1.5 2.2 2.7 2.7l.7-.6c.3-.2.6-.3.9-.1l1.9 1c.3.2.3.6.1.9l-.6.7c-.2.3-.6.5-1 .5-3.9-.3-6.9-3.3-7.1-7.1z"/></svg>
+  </a>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;headerPadY&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2,&quot;min&quot;:2,&quot;max&quot;:16,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;headerLogo&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:44,&quot;min&quot;:32,&quot;max&quot;:64,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;navFont&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:15,&quot;min&quot;:12,&quot;max&quot;:17,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;ctaRadius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:12,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;زر تواصل معنا&quot;}}">
 class Component extends DCLogic {
-  state = { active: '#home', svActive: 0, svW: 0 };
+  state = { active: '#home', svActive: 0, svW: 0, mobileMenuOpen: false };
   _svRef = React.createRef();
+  _toggleMobileMenu = () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }));
+  _closeMobileMenuOnDesktop = () => { if (window.innerWidth > 768 && this.state.mobileMenuOpen) this.setState({ mobileMenuOpen: false }); };
   _svGo(next) {
     this.setState({ svActive: next, svMoving: true });
     if (this._svMT) clearTimeout(this._svMT);
@@ -339,9 +370,9 @@ class Component extends DCLogic {
     }
     document.querySelectorAll('[data-reveal]:not([data-reveal="in"])').forEach((el) => this._io.observe(el));
   }
-  componentDidMount() { this._observeReveals(); this._restartSvLoop(); this._measureSv(); window.addEventListener('resize', this._measureSv); }
+  componentDidMount() { this._observeReveals(); this._restartSvLoop(); this._measureSv(); window.addEventListener('resize', this._measureSv); window.addEventListener('resize', this._closeMobileMenuOnDesktop); }
   componentDidUpdate() { this._observeReveals(); this._measureSv(); }
-  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._svT) clearInterval(this._svT); window.removeEventListener('resize', this._measureSv); }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._svT) clearInterval(this._svT); window.removeEventListener('resize', this._measureSv); window.removeEventListener('resize', this._closeMobileMenuOnDesktop); }
   renderVals() {
     const ctaRadius = this.props.ctaRadius ?? 18;
     const navItems = [
@@ -351,7 +382,7 @@ class Component extends DCLogic {
       const isActive = this.state.active === href;
       return {
         href, label,
-        onClick: () => this.setState({ active: href }),
+        onClick: () => this.setState({ active: href, mobileMenuOpen: false }),
         style: {
           animation: 'dropFromTop 0.5s ease-out ' + (0.2 + (arr.length - 1 - i) * 0.15) + 's both',
           padding: '7px 11px', fontSize: '13px', borderRadius: ctaRadius + 'px',
@@ -476,6 +507,16 @@ class Component extends DCLogic {
         transitionDelay: ((arr.length - 1 - i) * 0.15) + 's', cursor: 'default',
       },
     }));
+    const mobileMenuOpen = !!this.state.mobileMenuOpen;
+    const mobileMenuPanelStyle = {
+      position: 'absolute', top: '100%', left: 0, right: 0,
+      background: 'rgba(255, 255, 255, 0.97)', backdropFilter: 'saturate(140%) blur(10px)',
+      boxShadow: '0 12px 26px rgba(6, 32, 66, 0.18)', borderRadius: '0 0 20px 20px',
+      padding: '10px 16px 16px', display: 'flex', flexDirection: 'column', gap: '6px',
+      animation: 'dropFromTop 0.5s ease-out both',
+    };
+    const hamburgerIconStyle = { display: mobileMenuOpen ? 'none' : 'block' };
+    const closeIconStyle = { display: mobileMenuOpen ? 'block' : 'none' };
     return {
       services, team, navItems,
       svRef: this._svRef, svTrackStyle, svDots, svCards,
@@ -483,6 +524,8 @@ class Component extends DCLogic {
       headerLogo: this.props.headerLogo ?? 52,
       navFont: this.props.navFont ?? 14,
       ctaRadius: this.props.ctaRadius ?? 18,
+      toggleMobileMenu: this._toggleMobileMenu,
+      mobileMenuOpen, mobileMenuPanelStyle, hamburgerIconStyle, closeIconStyle,
     };
   }
 }
