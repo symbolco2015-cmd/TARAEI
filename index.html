@@ -14,6 +14,7 @@
   body { margin: 0; background: #ffffff; font-family: Georgia, 'Times New Roman', 'Traditional Arabic', serif; }
   @keyframes cardRiseUp { from { translate: 0 90px; } to { translate: 0 0; } }
   @keyframes popFromCenter { from { opacity: 0; transform: scale(0.3); filter: blur(6px); } 70% { filter: blur(2px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+  @keyframes svModalFade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes dropFromTop { from { opacity: 0; transform: translateY(-40px); filter: blur(4px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
   @keyframes slideFromRight { from { opacity: 0; transform: translateX(60px); filter: blur(5px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
   @keyframes slideFromLeft { from { opacity: 0; transform: translateX(-60px); filter: blur(5px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
@@ -171,6 +172,30 @@
     </div>
   </section>
 
+  <sc-if value="{{ svModalOpen }}">
+    <div style="position: fixed; inset: 0; background: rgba(6, 32, 66, 0.72); backdrop-filter: blur(6px); z-index: 50; display: flex; align-items: center; justify-content: center; padding: 20px; animation: svModalFade 0.25s ease-out both;" onClick="{{ closeSvModal }}">
+      <div style="background: #ffffff; border-radius: 20px; border-top: 4px solid #918151; max-width: 480px; width: 100%; max-height: 85vh; overflow-y: auto; box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45); position: relative; animation: popFromCenter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;" onClick="{{ stopSvModalClick }}">
+        <button aria-label="إغلاق" onClick="{{ closeSvModal }}" style="position: absolute; top: 14px; left: 14px; width: 32px; height: 32px; border-radius: 50%; background: #ffffff; border: 1.5px solid rgba(11, 58, 122, 0.25); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; z-index: 2; box-shadow: 0 4px 10px rgba(6, 32, 66, 0.18); transition: background .2s, border-color .2s, transform .15s;" style-hover="background: #c8b98c; border-color: #c8b98c; transform: translateY(-1px);">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0b3a7a" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <div style="position: relative; width: 100%; height: 200px; overflow: hidden; border-radius: 20px 20px 0 0;">
+          <div role="img" aria-label="{{ svModalService.title }}" style="{{ svModalImgStyle }}"></div>
+          <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 32, 66, 0.35), rgba(6, 32, 66, 0) 45%);"></div>
+        </div>
+        <div style="padding: 22px 26px 28px;">
+          <h3 style="margin: 0 0 16px; font-size: 22px; color: #0b3a7a; text-align: center;">{{ svModalService.title }}</h3>
+          <div style="width: 100%; height: 2px; background: linear-gradient(to right, rgba(145, 129, 81, 0), #918151 30%, #c8b98c 50%, #918151 70%, rgba(145, 129, 81, 0)); margin-bottom: 20px;"></div>
+          <sc-for list="{{ svModalService.items }}" as="it" hint-placeholder-count="5">
+            <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 13px;">
+              <div style="width: 8px; height: 8px; border-radius: 50%; background: #918151; flex-shrink: 0; margin-top: 9px;"></div>
+              <p style="margin: 0; font-size: 15px; line-height: 2; color: #2c3e5d; text-align: justify; text-justify: inter-word; text-align-last: right; flex: 1;">{{ it }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
   <section id="team" data-screen-label="فريق العمل" data-reveal style="background: #f0f2f6; border-radius: 24px; margin: 7px; padding: 48px 48px 56px;">
     <div style="text-align: center; margin-bottom: 40px;">
       <div style="color: #918151; font-size: 15px; letter-spacing: 1px; margin-bottom: 8px;">فريق العمل</div>
@@ -294,7 +319,7 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;headerPadY&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2,&quot;min&quot;:2,&quot;max&quot;:16,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;headerLogo&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:44,&quot;min&quot;:32,&quot;max&quot;:64,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;navFont&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:15,&quot;min&quot;:12,&quot;max&quot;:17,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;ctaRadius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:12,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;زر تواصل معنا&quot;}}">
 class Component extends DCLogic {
-  state = { active: '#home', svActive: 0, svW: 0, mobileMenuOpen: false };
+  state = { active: '#home', svActive: 0, svW: 0, mobileMenuOpen: false, svModalOpen: false, svModalIndex: 0 };
   _svRef = React.createRef();
   _toggleMobileMenu = () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }));
   _closeMobileMenuOnDesktop = () => { if (window.innerWidth > 768 && this.state.mobileMenuOpen) this.setState({ mobileMenuOpen: false }); };
@@ -305,8 +330,30 @@ class Component extends DCLogic {
   }
   _restartSvLoop() {
     if (this._svT) clearInterval(this._svT);
-    this._svT = setInterval(() => this._svGo((this.state.svActive + 1) % 8), 2000);
+    this._svT = setInterval(() => { if (!this.state.svModalOpen && !this._svModalPending) this._svGo((this.state.svActive + 1) % 8); }, 2000);
   }
+  _openSvModal = (k, svIndex) => {
+    this._restartSvLoop();
+    if (k === this.state.svActive) {
+      this.setState({ svModalOpen: true, svModalIndex: svIndex });
+      return;
+    }
+    this._svModalPending = true;
+    this._svGo(k);
+    if (this._svModalT) clearTimeout(this._svModalT);
+    this._svModalT = setTimeout(() => {
+      this._svModalPending = false;
+      this.setState({ svModalOpen: true, svModalIndex: svIndex });
+    }, 600);
+  };
+  _closeSvModal = () => {
+    this._svModalPending = false;
+    if (this._svModalT) clearTimeout(this._svModalT);
+    this.setState({ svModalOpen: false });
+    this._restartSvLoop();
+  };
+  _stopSvModalClick = (e) => { e.stopPropagation(); };
+  _onSvModalKeydown = (e) => { if (e.key === 'Escape' && this.state.svModalOpen) this._closeSvModal(); };
   _measureSv = () => { const el = this._svRef.current; if (el && el.clientWidth !== this.state.svW) this.setState({ svW: el.clientWidth }); };
   _observeReveals() {
     if (!this._io) {
@@ -316,9 +363,9 @@ class Component extends DCLogic {
     }
     document.querySelectorAll('[data-reveal]:not([data-reveal="in"])').forEach((el) => this._io.observe(el));
   }
-  componentDidMount() { this._observeReveals(); this._restartSvLoop(); this._measureSv(); window.addEventListener('resize', this._measureSv); window.addEventListener('resize', this._closeMobileMenuOnDesktop); }
+  componentDidMount() { this._observeReveals(); this._restartSvLoop(); this._measureSv(); window.addEventListener('resize', this._measureSv); window.addEventListener('resize', this._closeMobileMenuOnDesktop); window.addEventListener('keydown', this._onSvModalKeydown); }
   componentDidUpdate() { this._observeReveals(); this._measureSv(); }
-  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._svT) clearInterval(this._svT); window.removeEventListener('resize', this._measureSv); window.removeEventListener('resize', this._closeMobileMenuOnDesktop); }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._svT) clearInterval(this._svT); if (this._svModalT) clearTimeout(this._svModalT); window.removeEventListener('resize', this._measureSv); window.removeEventListener('resize', this._closeMobileMenuOnDesktop); window.removeEventListener('keydown', this._onSvModalKeydown); }
   renderVals() {
     const ctaRadius = this.props.ctaRadius ?? 18;
     const navItems = [
@@ -369,7 +416,7 @@ class Component extends DCLogic {
         'تأسيس وحماية حقوق براءات الاختراع',
         'أعمال المساندة والتمثيل لرجال وسيدات الأعمال والمنشآت في عمليات التفاوض وإتمام أعمال الصفقات التجارية',
         'التمثيل القانوني في الجمعيات العمومية العادية وغير العادية وإبداء الرأي القانوني فيما يتعلق بالإجراءات اللازمة لانعقادها',
-        'تقديم الاستشارات القانونية للشركات بجميع أنواعها والمساهمة المدرجة بالسوق المالية',
+        'تقديم الاستشارات القانونية للشركات بجميع أنواعها والشركات المساهمة المدرجة في السوق المالية',
         'تقديم خدمات المحاماة للشركات',
         'تقديم استشارات قانونية مجانية',
       ]},
@@ -378,8 +425,8 @@ class Component extends DCLogic {
         'إعداد ومراجعة وصياغة اتفاقيات عدم المنافسة واتفاقيات سرية المعلومات وإبرام المخالصات وإجراءات التسويات واتفاقيات الصلح',
         'إعداد وصياغة عقود الاندماج والاستحواذ للشركات',
         'إعداد وصياغة ومراجعة الأنظمة الأساسية للشركات ولوائح الحوكمة والمراجعة الداخلية بما يتفق مع الأنظمة',
-        'تقديم المشورة القانونية للمستثمرين الأجانب من حيث الأنظمة المتبعة في المملكة ورأس المال والضريبة المفروضة وبيان حقوق المستثمر واقتراح الحلول القانونية لمعالجة الإشكالات القانونية',
-        'تأسيس الشركات الأجنبية أو المختلطة وفروعها، وإصدار التراخيص والسجلات التجارية للمستثمر الأجنبي وتقديم الاستشارات والحلول النموذجية لمكافحة الإغراق والممارسات الضارة في التجارة الدولية وسبل مواجهتها',
+        'تقديم المشورة القانونية للمستثمرين الأجانب من حيث الأنظمة المتبعة في المملكة، ورأس المال، والضريبة المفروضة، وبيان حقوق المستثمر، واقتراح الحلول القانونية لمعالجة الإشكالات القانونية',
+        'تأسيس الشركات الأجنبية أو المختلطة وفروعها، وإصدار التراخيص والسجلات التجارية للمستثمر الأجنبي، وتقديم الاستشارات والحلول النموذجية لمكافحة الإغراق والممارسات الضارة في التجارة الدولية وسبل مواجهتها',
         'تقديم خدمات المحاماة',
         'تقديم استشارات قانونية مجانية',
       ]},
@@ -401,7 +448,7 @@ class Component extends DCLogic {
           width: '100%', height: '220px', borderRadius: '14px 14px 0 0',
           background: "url('" + sv.img + "') center / cover no-repeat #e8ecf2",
         },
-        select: () => { this._svGo(k); this._restartSvLoop(); },
+        select: () => this._openSvModal(k, k % svBase.length),
         cardStyle: {
           position: 'absolute', left: '50%', top: '12px', width: cardW + 'px', marginLeft: (-cardW / 2) + 'px',
           background: '#ffffff', borderTop: '4px solid ' + (isOn ? '#918151' : '#0b3a7a'),
@@ -463,6 +510,13 @@ class Component extends DCLogic {
     };
     const hamburgerIconStyle = { display: mobileMenuOpen ? 'none' : 'block' };
     const closeIconStyle = { display: mobileMenuOpen ? 'block' : 'none' };
+    const svModalOpen = !!this.state.svModalOpen;
+    const svModalIndex = this.state.svModalIndex || 0;
+    const svModalService = services[svModalIndex] || services[0];
+    const svModalImgStyle = {
+      position: 'absolute', inset: 0,
+      background: "url('" + svModalService.img + "') center / cover no-repeat #e8ecf2",
+    };
     return {
       services, team, navItems,
       svRef: this._svRef, svTrackStyle, svDots, svCards,
@@ -472,6 +526,8 @@ class Component extends DCLogic {
       ctaRadius: this.props.ctaRadius ?? 18,
       toggleMobileMenu: this._toggleMobileMenu,
       mobileMenuOpen, mobileMenuPanelStyle, hamburgerIconStyle, closeIconStyle,
+      svModalOpen, svModalService, svModalImgStyle,
+      closeSvModal: this._closeSvModal, stopSvModalClick: this._stopSvModalClick,
     };
   }
 }
