@@ -49,6 +49,8 @@
     .team-card { padding: 20px 12px !important; min-height: 150px !important; }
     .team-card-name { font-size: 15px !important; }
     .team-card-avatar { width: 48px !important; height: 48px !important; font-size: 19px !important; margin-bottom: 10px !important; }
+    .hero-subtitle { white-space: normal !important; }
+    h2 { font-size: 25px !important; }
   }
 </style>
 <script src="./scripts/image-slot.js"></script>
@@ -105,7 +107,7 @@
       <h1 style="margin: 0; font-size: 42px; line-height: 1.4; color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center; text-shadow: 0 1px 10px rgba(6, 32, 66, 0.75), 0 0 30px rgba(6, 32, 66, 0.5); animation: slideFromLeft 0.9s ease-out 0.25s both;">شركة ترائي للمحاماة والاستشارات القانونية</h1>
       <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin: 16px 0 30px; animation: slideFromRight 0.9s ease-out 0.4s both;">
         <div style="width: 48px; height: 1px; flex-shrink: 0; background: linear-gradient(to left, rgba(200, 185, 140, 0), #c8b98c);"></div>
-        <p style="font-size: 18px; line-height: 1.9; color: #e8dfc8; text-shadow: 0 1px 8px rgba(6, 32, 66, 0.75); margin: 0; white-space: nowrap;">شركة مهنية مرخّصة من وزارة العدل في المملكة العربية السعودية</p>
+        <p class="hero-subtitle" style="font-size: 18px; line-height: 1.9; color: #e8dfc8; text-shadow: 0 1px 8px rgba(6, 32, 66, 0.75); margin: 0; white-space: nowrap;">شركة مهنية مرخّصة من وزارة العدل في المملكة العربية السعودية</p>
         <div style="width: 48px; height: 1px; flex-shrink: 0; background: linear-gradient(to right, rgba(200, 185, 140, 0), #c8b98c);"></div>
       </div>
       <div style="display: flex; gap: 14px; justify-content: center; pointer-events: auto; flex-wrap: wrap;">
@@ -121,7 +123,7 @@
       <div class="reveal-anim" style="color: #918151; font-size: 15px; letter-spacing: 1px; margin-bottom: 8px; animation: slideFromRight 0.9s ease-out 0.35s both;">عن شركتنا</div>
       <h2 class="reveal-anim" style="margin: 0 0 14px; font-size: 30px; color: #0b3a7a; animation: slideFromRight 0.9s ease-out 0.45s both;">نبذة عنا</h2>
       <div class="reveal-anim" style="width: 64px; height: 3px; background: #918151; border-radius: 999px; margin-bottom: 20px; animation: slideFromRight 0.9s ease-out 0.5s both;"></div>
-      <p class="reveal-anim" style="font-size: 15px; line-height: 2; margin: 0; color: #2c3e5d; text-align: justify; text-justify: inter-word; text-align-last: right; animation: slideFromRight 0.9s ease-out 0.6s both;">نحن شركة ترائي للمحاماة والاستشارات القانونية شركة مهنية ذات مسؤولية محدودة، مرخص لها بتقديم الخدمات القانونية من قِبل وزارة العدل في المملكة العربية السعودية، يعمل بها مجموعة من المحامين والمستشارين الحاصلين على درجات عليا وخبرات ممتدة لأكثر من خمس سنوات في عدة تخصصات كالعمالي والتجاري والإداري والأحوال الشخصية والمنازعات المدنية وأعمال التحكيم والتدريب والدراسات المتخصصة والدقيقة والحماية الوقائية للمستثمرين في الداخل والخارج، لنشكل بذلك مجموعة متكاملة وواسعة من خدمات المحاماة والاستشارات القانونية والشرعية وفق أعلى معايير الجودة.</p>
+      <p class="reveal-anim" style="font-size: 15px; line-height: 2; margin: 0; color: #2c3e5d; text-align: justify; text-justify: inter-word; text-align-last: right; animation: slideFromRight 0.9s ease-out 0.6s both;">نحن شركة ترائي للمحاماة والاستشارات القانونية، شركة مهنية ذات مسؤولية محدودة، مرخّص لها بتقديم الخدمات القانونية من قِبل وزارة العدل في المملكة العربية السعودية، يعمل بها مجموعة من المحامين والمستشارين الحاصلين على درجات عليا وخبرات ممتدة لأكثر من خمس سنوات في عدة تخصصات كالعمالي والتجاري والإداري والأحوال الشخصية والمنازعات المدنية وأعمال التحكيم والتدريب والدراسات المتخصصة والدقيقة والحماية الوقائية للمستثمرين في الداخل والخارج، لنشكل بذلك مجموعة متكاملة وواسعة من خدمات المحاماة والاستشارات القانونية والشرعية وفق أعلى معايير الجودة.</p>
       <div class="reveal-anim" style="display: flex; gap: 28px; margin-top: 24px; animation: slideFromRight 0.9s ease-out 0.7s both;">
         <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #0b3a7a;">
           <div style="width: 8px; height: 8px; border-radius: 50%; background: #918151;"></div>
@@ -353,7 +355,7 @@ class Component extends DCLogic {
       ]},
       { title: 'التقاضي وتسوية المنازعات', img: 'assets/uploads/Gemini_Generated_Image_rvhtchrvhtchrvht.png', slotId: 'svc-2', slotLabel: 'أيقونة/صورة الخدمة', items: [
         'الترافع وتقديم اللوائح والمذكرات أمام جميع المحاكم بمختلف درجاتها',
-        'الاعتراضات أمام محاكم الاستئناف وإلتماس إعادة النظر',
+        'الاعتراضات أمام محاكم الاستئناف والتماس إعادة النظر',
         'تنفيذ الأحكام المحلية والأجنبية والقرارات الصادرة عن الجهات القضائية وهيئات التحكيم',
         'تقديم خدمات المحاماة',
         'تقديم استشارات قانونية مجانية',
