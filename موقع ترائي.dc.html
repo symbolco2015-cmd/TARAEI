@@ -6,6 +6,7 @@
 <link rel="icon" type="image/png" sizes="32x32" href="assets/brand/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/brand/favicon-16.png">
 <script src="./scripts/support.js"></script>
+<title>شركة تراءي للمحاماة والاستشارات القانونية</title>
 </head>
 <body>
 <x-dc>
@@ -17,6 +18,7 @@
   @keyframes svModalFade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes dropFromTop { from { opacity: 0; transform: translateY(-40px); filter: blur(4px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
   @keyframes slideFromRight { from { opacity: 0; transform: translateX(60px); filter: blur(5px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
+  @keyframes slideFromRightShort { from { opacity: 0; transform: translateX(12px); filter: blur(5px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
   @keyframes slideFromLeft { from { opacity: 0; transform: translateX(-60px); filter: blur(5px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateX(0); filter: blur(0); } }
   @keyframes riseIn { from { opacity: 0; transform: translateY(28px); filter: blur(4px); } 70% { filter: blur(1px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
   [data-reveal] { opacity: 0; transform: translateY(28px); filter: blur(4px); transition: opacity 0.8s ease-out, transform 0.8s ease-out, filter 0.8s ease-out; }
@@ -47,11 +49,13 @@
     .dc-hamburger { display: flex !important; }
     #team { padding: 32px 20px 40px !important; }
     .team-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
-    .team-card { padding: 20px 12px !important; min-height: 150px !important; }
+    .team-card { padding: 20px 12px !important; min-height: 172px !important; }
     .team-card-name { font-size: 15px !important; }
-    .team-card-avatar { width: 48px !important; height: 48px !important; font-size: 19px !important; margin-bottom: 10px !important; }
+    .team-card-avatar { width: 48px !important; height: 48px !important; margin-bottom: 10px !important; }
     .hero-subtitle { white-space: normal !important; }
     h2 { font-size: 25px !important; }
+    .about-tab { font-size: 9px !important; padding: 6px 8px !important; }
+    .about-tabs-row { gap: 2px !important; }
   }
 </style>
 <script src="./scripts/image-slot.js"></script>
@@ -61,10 +65,10 @@
   <header style="background: rgba(255, 255, 255, 0.92); backdrop-filter: saturate(140%) blur(10px); border-bottom: 1px solid rgba(11, 58, 122, 0.14); box-shadow: 0 4px 18px rgba(6, 32, 66, 0.07); display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: {{ headerPadY }}px 20px; position: sticky; top: 0; z-index: 20;">
     <div style="position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: linear-gradient(to right, rgba(145, 129, 81, 0), #918151 30%, #c8b98c 50%, #918151 70%, rgba(145, 129, 81, 0));"></div>
     <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0;">
-      <img src="assets/brand/logo-64.png" alt="ترائي" width="{{ headerLogo }}" height="{{ headerLogo }}" style="display: block; flex-shrink: 0; animation: dropFromTop 0.7s ease-out both;">
+      <img src="assets/brand/logo-64.png" alt="تراءي" width="{{ headerLogo }}" height="{{ headerLogo }}" style="display: block; flex-shrink: 0; animation: dropFromTop 0.7s ease-out both;">
       <div style="width: 1px; height: 34px; background: linear-gradient(to bottom, rgba(145, 129, 81, 0), rgba(145, 129, 81, 0.55), rgba(145, 129, 81, 0)); flex-shrink: 0;"></div>
       <div style="display: flex; flex-direction: column; flex-shrink: 0;">
-        <div style="font-size: 15px; font-weight: bold; color: #0b3a7a; letter-spacing: 0.2px; line-height: 1.35; white-space: nowrap; animation: slideFromRight 0.7s ease-out 0.55s both;">ترائي للمحاماة والاستشارات القانونية</div>
+        <div style="font-size: 15px; font-weight: bold; color: #0b3a7a; letter-spacing: 0.2px; line-height: 1.35; white-space: nowrap; animation: slideFromRight 0.7s ease-out 0.55s both;">تراءي للمحاماة والاستشارات القانونية</div>
         <div style="font-size: 10px; color: #918151; letter-spacing: 2.5px; margin-top: 2px; white-space: nowrap; animation: slideFromRight 0.7s ease-out 1.05s both;">TARAEI LAW FIRM</div>
       </div>
     </div>
@@ -73,8 +77,7 @@
         <a href="{{ n.href }}" onClick="{{ n.onClick }}" class="dc-nav-link" style="{{ n.style }}" style-hover="{{ n.hoverStyle }}" style-active="{{ n.activeStyle }}">{{ n.label }}</a>
       </sc-for>
       <a href="#contact" class="dc-header-cta" style="background: linear-gradient(135deg, #a3905c, #918151); color: #ffffff; padding: 8px 16px; font-size: 13px; border-radius: {{ ctaRadius }}px; margin-right: 4px; box-shadow: 0 6px 16px rgba(145, 129, 81, 0.35); animation: dropFromTop 0.5s ease-out 0.05s both;" style-hover="background: #7a6c43; color: #ffffff; transform: translateY(-1px);">تواصل معنا الآن</a>
-      <!-- TODO: WhatsApp link - سيتم تزويده لاحقاً -->
-      <a href="#" aria-label="تواصل عبر واتساب" title="واتساب" class="dc-header-wa" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex-shrink: 0; margin-right: 12px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); box-shadow: 0 6px 16px rgba(145, 129, 81, 0.35); transition: background .2s, color .2s, box-shadow .2s, transform .1s; animation: dropFromTop 0.5s ease-out 0.05s both;" style-hover="background: #7a6c43; transform: translateY(-1px);">
+      <a href="https://wa.me/966536030081" aria-label="تواصل عبر واتساب" title="واتساب" class="dc-header-wa" style="display: flex; align-items: center; justify-content: center; width: 34px; height: 34px; flex-shrink: 0; margin-right: 12px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); box-shadow: 0 6px 16px rgba(145, 129, 81, 0.35); transition: background .2s, color .2s, box-shadow .2s, transform .1s; animation: dropFromTop 0.5s ease-out 0.05s both;" style-hover="background: #7a6c43; transform: translateY(-1px);">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path d="M8.5 9.2c0-.4.2-.8.5-1l.7-.6c.3-.2.7-.2.9.1l1 1.9c.2.3.1.6-.1.9l-.6.7c.5 1.2 1.5 2.2 2.7 2.7l.7-.6c.3-.2.6-.3.9-.1l1.9 1c.3.2.3.6.1.9l-.6.7c-.2.3-.6.5-1 .5-3.9-.3-6.9-3.3-7.1-7.1z"/></svg>
       </a>
       <button aria-label="فتح القائمة" aria-expanded="{{ mobileMenuOpen }}" onClick="{{ toggleMobileMenu }}" class="dc-hamburger" style="display: none; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: 6px; flex-shrink: 0; border-radius: 10px; background: rgba(11, 58, 122, 0.07); border: 1px solid rgba(11, 58, 122, 0.18); cursor: pointer; padding: 0; transition: background .2s, color .2s, box-shadow .2s, transform .1s;" style-hover="background: rgba(11, 58, 122, 0.14);">
@@ -94,18 +97,18 @@
 
   <section id="home" data-screen-label="الرئيسية" style="background: #ffffff; position: relative; overflow: hidden; border-radius: 24px; margin: 7px; animation: riseIn 0.9s ease-out both;">
     <div style="position: absolute; inset: 0; filter: blur(7px); transform: scale(1.04);">
-      <img src="assets/brand/hero-1.png" alt="اجتماع قانوني" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: heroFade 18s linear infinite;">
-      <img src="assets/brand/hero-2.png" alt="مكتب المحاماة" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroFade 18s linear infinite; animation-delay: 6s;">
-      <img src="assets/brand/hero-3.png" alt="مطرقة القاضي والوثائق" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroFade 18s linear infinite; animation-delay: 12s;">
+      <img src="assets/brand/hero-1.webp" alt="اجتماع قانوني" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; animation: heroFade 18s linear infinite;">
+      <img src="assets/brand/hero-2.webp" alt="مكتب المحاماة" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroFade 18s linear infinite; animation-delay: 6s;">
+      <img src="assets/brand/hero-3.webp" alt="مطرقة القاضي والوثائق" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; animation: heroFade 18s linear infinite; animation-delay: 12s;">
     </div>
     <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 32, 66, 0.55) 0%, rgba(11, 58, 122, 0.3) 40%, rgba(11, 58, 122, 0.25) 100%);"></div>
     <div style="position: absolute; inset: 0; background: url('assets/brand/hero-pattern-overlay.png') center / cover no-repeat; opacity: 0.3; pointer-events: none;"></div>
     <div style="position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(to right, rgba(145, 129, 81, 0), #918151 35%, #c8b98c 50%, #918151 65%, rgba(145, 129, 81, 0));"></div>
     <div style="position: relative; max-width: 900px; margin: 0 auto; text-align: center; padding: 40px 32px 46px; color: #ffffff; pointer-events: none;">
       <div style="margin: 0 auto 24px; animation: logoFloat 4s ease-in-out infinite; width: 160px;">
-        <img src="assets/brand/logo-256.png" alt="شعار ترائي" width="160" style="display: block; animation: slideFromRight 0.9s ease-out 0.1s both; filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.85)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));">
+        <img src="assets/brand/logo-256.png" alt="شعار تراءي" width="160" style="display: block; animation: slideFromRight 0.9s ease-out 0.1s both; filter: drop-shadow(0 0 14px rgba(255, 255, 255, 0.85)) drop-shadow(0 6px 18px rgba(0, 0, 0, 0.45));">
       </div>
-      <h1 style="margin: 0; font-size: 42px; line-height: 1.4; color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center; text-shadow: 0 1px 10px rgba(6, 32, 66, 0.75), 0 0 30px rgba(6, 32, 66, 0.5); animation: slideFromLeft 0.9s ease-out 0.25s both;">شركة ترائي للمحاماة والاستشارات القانونية</h1>
+      <h1 style="margin: 0; font-size: 42px; line-height: 1.4; color: #ffffff; display: flex; flex-direction: column; align-items: center; text-align: center; text-shadow: 0 1px 10px rgba(6, 32, 66, 0.75), 0 0 30px rgba(6, 32, 66, 0.5); animation: slideFromLeft 0.9s ease-out 0.25s both;">شركة تراءي للمحاماة والاستشارات القانونية</h1>
       <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin: 16px 0 30px; animation: slideFromRight 0.9s ease-out 0.4s both;">
         <div style="width: 48px; height: 1px; flex-shrink: 0; background: linear-gradient(to left, rgba(200, 185, 140, 0), #c8b98c);"></div>
         <p class="hero-subtitle" style="font-size: 18px; line-height: 1.9; color: #e8dfc8; text-shadow: 0 1px 8px rgba(6, 32, 66, 0.75); margin: 0; white-space: nowrap;">شركة مهنية مرخّصة من وزارة العدل في المملكة العربية السعودية</p>
@@ -121,23 +124,39 @@
   <section id="about" data-screen-label="عن شركتنا" data-reveal style="background: linear-gradient(160deg, #f5f6f9 0%, #eceef4 55%, #e4e8f0 100%); border: 1px solid rgba(145, 129, 81, 0.25); border-radius: 24px; margin: 7px; padding: 44px 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; align-items: stretch; overflow: hidden; position: relative; transition-delay: 0.15s;">
     <div style="position: absolute; top: 0; right: 0; width: 240px; height: 4px; background: linear-gradient(to left, #918151, rgba(145, 129, 81, 0)); border-radius: 0 24px 0 0;"></div>
     <div style="position: relative;">
-      <div class="reveal-anim" style="color: #918151; font-size: 15px; letter-spacing: 1px; margin-bottom: 8px; animation: slideFromRight 0.9s ease-out 0.35s both;">عن شركتنا</div>
-      <h2 class="reveal-anim" style="margin: 0 0 14px; font-size: 30px; color: #0b3a7a; animation: slideFromRight 0.9s ease-out 0.45s both;">نبذة عنا</h2>
-      <div class="reveal-anim" style="width: 64px; height: 3px; background: #918151; border-radius: 999px; margin-bottom: 20px; animation: slideFromRight 0.9s ease-out 0.5s both;"></div>
-      <p class="reveal-anim" style="font-size: 15px; line-height: 2; margin: 0; color: #2c3e5d; text-align: justify; text-justify: inter-word; text-align-last: right; animation: slideFromRight 0.9s ease-out 0.6s both;">نحن شركة ترائي للمحاماة والاستشارات القانونية، شركة مهنية ذات مسؤولية محدودة، مرخّص لها بتقديم الخدمات القانونية من قِبل وزارة العدل في المملكة العربية السعودية، يعمل بها مجموعة من المحامين والمستشارين الحاصلين على درجات عليا وخبرات ممتدة لأكثر من خمس سنوات في عدة تخصصات كالعمالي والتجاري والإداري والأحوال الشخصية والمنازعات المدنية وأعمال التحكيم والتدريب والدراسات المتخصصة والدقيقة والحماية الوقائية للمستثمرين في الداخل والخارج، لنشكل بذلك مجموعة متكاملة وواسعة من خدمات المحاماة والاستشارات القانونية والشرعية وفق أعلى معايير الجودة.</p>
-      <div class="reveal-anim" style="display: flex; gap: 28px; margin-top: 24px; animation: slideFromRight 0.9s ease-out 0.7s both;">
-        <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #0b3a7a;">
-          <div style="width: 8px; height: 8px; border-radius: 50%; background: #918151;"></div>
-          <span>مرخّصة من وزارة العدل</span>
-        </div>
-        <div style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: #0b3a7a;">
-          <div style="width: 8px; height: 8px; border-radius: 50%; background: #918151;"></div>
-          <span>خبرات تتجاوز خمس سنوات</span>
-        </div>
+      <div class="reveal-anim" style="color: #918151; font-size: 15px; letter-spacing: 1px; margin-bottom: 14px; animation: slideFromRight 0.9s ease-out 0.35s both;">عن شركتنا</div>
+      <div class="reveal-anim about-tabs-row" style="display: flex; flex-wrap: wrap; animation: slideFromRight 0.9s ease-out 0.45s both;">
+        <sc-for list="{{ aboutTabs }}" as="t" hint-placeholder-count="5">
+          <button onClick="{{ t.select }}" class="about-tab" style="{{ t.style }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+      <div key="{{ aboutTabKey }}" style="{{ aboutBoxStyle }}">
+        <sc-for list="{{ aboutParagraphs }}" as="p" hint-placeholder-count="2">
+          <p class="reveal-anim" style="{{ p.style }}">{{ p.text }}</p>
+        </sc-for>
+        <sc-if value="{{ aboutHasItems }}">
+          <ul style="{{ aboutListStyle }}">
+            <sc-for list="{{ aboutItems }}" as="li" hint-placeholder-count="4">
+              <li class="reveal-anim" style="{{ li.style }}">{{ li.text }}</li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ aboutShowBadges }}">
+          <div style="display: flex; gap: 28px; flex-wrap: wrap; margin-top: 10px;">
+            <div class="reveal-anim" style="{{ aboutBadge1Style }}">
+              <div style="width: 8px; height: 8px; border-radius: 50%; background: #918151; flex-shrink: 0;"></div>
+              <span>مرخّصة من وزارة العدل</span>
+            </div>
+            <div class="reveal-anim" style="{{ aboutBadge2Style }}">
+              <div style="width: 8px; height: 8px; border-radius: 50%; background: #918151; flex-shrink: 0;"></div>
+              <span>خبرات تتجاوز 10 سنوات</span>
+            </div>
+          </div>
+        </sc-if>
       </div>
     </div>
     <div class="reveal-anim" style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 16px 38px rgba(11, 58, 122, 0.22); border: 1px solid rgba(200, 185, 140, 0.5); animation: slideFromLeft 0.9s ease-out 0.5s both;">
-      <img src="assets/uploads/Gemini_Generated_Image_5qzpry5qzpry5qzp.png" alt="مبنى المحكمة العامة" style="width: 100%; height: 100%; min-height: 300px; object-fit: cover; display: block;">
+      <img src="assets/uploads/legal-tech-hero.jpg" alt="خدمات قانونية رقمية متطورة" loading="lazy" style="width: 100%; height: 100%; min-height: 300px; object-fit: cover; object-position: 75% center; display: block;">
       <div style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(6, 32, 66, 0.35), rgba(6, 32, 66, 0) 45%);"></div>
     </div>
   </section>
@@ -165,7 +184,7 @@
         </div>
       </div>
       <div style="display: flex; justify-content: center; gap: 10px; margin-top: 18px;">
-        <sc-for list="{{ svDots }}" as="d" hint-placeholder-count="4">
+        <sc-for list="{{ svDots }}" as="d" hint-placeholder-count="9">
           <button onClick="{{ d.go }}" aria-label="{{ d.label }}" style="{{ d.style }}"></button>
         </sc-for>
       </div>
@@ -211,26 +230,42 @@
            Simplified per client request: name-only cards (photo/role badge/contact
            icons dropped from display, kept in the `team` data source above). -->
       <div data-reveal data-reveal-anim="drop" style="transition-delay: 0s;">
-        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 28px 18px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 190px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
-          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); color: #ffffff; font-size: 24px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex-shrink: 0;">ي</div>
-          <div class="team-card-name" style="font-size: 17px; font-weight: bold; color: #0d3466; line-height: 1.5;">يسرا عبدالوهاب محمود</div>
+        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 30px 18px 26px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 215px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
+          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; padding: 2px; background: linear-gradient(135deg, #c8b98c, #918151); margin-bottom: 14px; flex-shrink: 0;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/brand/logo-64.png" alt="تراءي" width="36" height="36" loading="lazy" style="display: block;">
+            </div>
+          </div>
+          <div class="team-card-name" style="font-size: 17px; font-weight: bold; color: #0d3466; line-height: 1.5;">يسرا عبدالوهاب محمود هلال</div>
         </div>
       </div>
       <div data-reveal data-reveal-anim="drop" style="transition-delay: 0.15s;">
-        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 28px 18px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 190px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
-          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); color: #ffffff; font-size: 24px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex-shrink: 0;">ي</div>
+        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 30px 18px 26px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 215px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
+          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; padding: 2px; background: linear-gradient(135deg, #c8b98c, #918151); margin-bottom: 14px; flex-shrink: 0;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/brand/logo-64.png" alt="تراءي" width="36" height="36" loading="lazy" style="display: block;">
+            </div>
+          </div>
           <div class="team-card-name" style="font-size: 17px; font-weight: bold; color: #0d3466; line-height: 1.5;">يسري عبدالحميد موسى</div>
         </div>
       </div>
       <div data-reveal data-reveal-anim="drop" style="transition-delay: 0.3s;">
-        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 28px 18px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 190px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
-          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); color: #ffffff; font-size: 24px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex-shrink: 0;">ع</div>
+        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 30px 18px 26px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 215px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
+          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; padding: 2px; background: linear-gradient(135deg, #c8b98c, #918151); margin-bottom: 14px; flex-shrink: 0;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/brand/logo-64.png" alt="تراءي" width="36" height="36" loading="lazy" style="display: block;">
+            </div>
+          </div>
           <div class="team-card-name" style="font-size: 17px; font-weight: bold; color: #0d3466; line-height: 1.5;">عبدالعزيز عائض المطيري</div>
         </div>
       </div>
       <div data-reveal data-reveal-anim="drop" style="transition-delay: 0.45s;">
-        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 28px 18px 24px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 190px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
-          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); color: #ffffff; font-size: 24px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; flex-shrink: 0;">ه</div>
+        <div class="team-card" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 30px 18px 26px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 215px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: default;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
+          <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; padding: 2px; background: linear-gradient(135deg, #c8b98c, #918151); margin-bottom: 14px; flex-shrink: 0;">
+            <div style="width: 100%; height: 100%; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
+              <img src="assets/brand/logo-64.png" alt="تراءي" width="36" height="36" loading="lazy" style="display: block;">
+            </div>
+          </div>
           <div class="team-card-name" style="font-size: 17px; font-weight: bold; color: #0d3466; line-height: 1.5;">هاشم عبدالرحمن الميسري</div>
         </div>
       </div>
@@ -244,13 +279,13 @@
         <h2 class="reveal-anim" style="margin: 0 0 14px; font-size: 30px; color: #ffffff; animation: slideFromRight 0.8s ease-out 0.2s both;">تواصل معنا الآن</h2>
         <div class="reveal-anim" style="width: 64px; height: 3px; background: #918151; border-radius: 999px; margin-bottom: 26px; animation: slideFromRight 0.8s ease-out 0.28s both;"></div>
         <div style="display: flex; flex-direction: column; gap: 14px; font-size: 16px; line-height: 1.8;">
-          <a href="tel:122680377" class="reveal-anim" style="display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(200, 185, 140, 0.25); border-radius: 14px; padding: 12px 16px; animation: slideFromRight 0.8s ease-out 0.38s both; text-decoration: none; transition: border-color .2s, background .2s, transform .2s;" style-hover="border-color: #c8b98c; background: rgba(255, 255, 255, 0.1); transform: translateY(-2px);">
+          <a href="tel:0536030081" class="reveal-anim" style="display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(200, 185, 140, 0.25); border-radius: 14px; padding: 12px 16px; animation: slideFromRight 0.8s ease-out 0.38s both; text-decoration: none; transition: border-color .2s, background .2s, transform .2s;" style-hover="border-color: #c8b98c; background: rgba(255, 255, 255, 0.1); transform: translateY(-2px);">
             <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
             </div>
             <div style="display: flex; flex-direction: column;">
               <span style="font-size: 12px; color: #c8b98c;">اتصل بنا</span>
-              <span style="font-size: 16px; color: #ffffff; font-weight: bold;">122680377</span>
+              <span style="font-size: 16px; color: #ffffff; font-weight: bold;">0536030081</span>
             </div>
           </a>
           <a href="mailto:taraei.official@gmail.com" class="reveal-anim" style="display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(200, 185, 140, 0.25); border-radius: 14px; padding: 12px 16px; animation: slideFromRight 0.8s ease-out 0.5s both; text-decoration: none; transition: border-color .2s, background .2s, transform .2s;" style-hover="border-color: #c8b98c; background: rgba(255, 255, 255, 0.1); transform: translateY(-2px);">
@@ -293,21 +328,21 @@
       <div style="display: flex; align-items: center; gap: 12px;">
         <div style="width: 46px; height: 46px; border-radius: 50%; padding: 2px; background: linear-gradient(135deg, #c8b98c, #918151); flex-shrink: 0;">
           <div style="width: 100%; height: 100%; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
-            <img src="assets/brand/logo-64.png" alt="ترائي" width="36" height="36" style="display: block;">
+            <img src="assets/brand/logo-64.png" alt="تراءي" width="36" height="36" loading="lazy" style="display: block;">
           </div>
         </div>
         <div style="width: 1px; height: 30px; background: linear-gradient(to bottom, rgba(200, 185, 140, 0), rgba(200, 185, 140, 0.55), rgba(200, 185, 140, 0)); flex-shrink: 0;"></div>
         <div>
-          <div style="font-size: 14px; font-weight: bold; color: #ffffff; line-height: 1.4;">ترائي للمحاماة والاستشارات القانونية</div>
+          <div style="font-size: 14px; font-weight: bold; color: #ffffff; line-height: 1.4;">تراءي للمحاماة والاستشارات القانونية</div>
           <div style="font-size: 9px; color: #918151; letter-spacing: 2.5px; margin-top: 2px;">TARAEI LAW FIRM</div>
         </div>
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: rgba(255, 255, 255, 0.7); direction: ltr; text-align: left;">
-        <a href="tel:122680377" style="color: rgba(255, 255, 255, 0.7);" style-hover="color: #c8b98c;">122680377</a>
+        <a href="tel:0536030081" style="color: rgba(255, 255, 255, 0.7);" style-hover="color: #c8b98c;">0536030081</a>
         <a href="mailto:taraei.official@gmail.com" style="color: rgba(255, 255, 255, 0.7);" style-hover="color: #c8b98c;">taraei.official@gmail.com</a>
       </div>
       <div style="display: flex; align-items: center; gap: 10px;">
-        <a href="tel:122680377" title="122680377" aria-label="اتصال" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(200, 185, 140, 0.4); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s;" style-hover="background: #c8b98c; transform: translateY(-2px);">
+        <a href="tel:0536030081" title="0536030081" aria-label="اتصال" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(200, 185, 140, 0.4); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s;" style-hover="background: #c8b98c; transform: translateY(-2px);">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c8b98c" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg>
         </a>
         <a href="mailto:taraei.official@gmail.com" title="taraei.official@gmail.com" aria-label="بريد إلكتروني" style="width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(200, 185, 140, 0.4); display: flex; align-items: center; justify-content: center; transition: background .2s, transform .2s;" style-hover="background: #c8b98c; transform: translateY(-2px);">
@@ -319,7 +354,7 @@
       </div>
     </div>
     <div style="max-width: 1100px; margin: 12px auto 0; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.12); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 13px;">
-      <div style="opacity: 0.6; font-size: 12px;">© 2026 جميع الحقوق محفوظة لترائي</div>
+      <div style="opacity: 0.6; font-size: 12px;">© 2026 جميع الحقوق محفوظة لتراءي</div>
       <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; opacity: 0.6;">
         <div style="width: 5px; height: 5px; border-radius: 50%; background: #918151;"></div>
         <span>مرخّصة من وزارة العدل — المملكة العربية السعودية</span>
@@ -327,15 +362,14 @@
     </div>
   </footer>
 
-  <!-- TODO: WhatsApp link - سيتم تزويده لاحقاً -->
-  <a href="#" aria-label="تواصل عبر واتساب" title="واتساب" style="position: fixed; bottom: 24px; right: 24px; width: 66px; height: 66px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35); z-index: 25; animation: waFabPulse 2.4s ease-in-out infinite; transition: background .2s, color .2s, box-shadow .2s, transform .1s;" style-hover="background: #7a6c43; transform: translateY(-2px) scale(1.06); animation-play-state: paused;">
+  <a href="https://wa.me/966536030081" aria-label="تواصل عبر واتساب" title="واتساب" style="position: fixed; bottom: 24px; right: 24px; width: 66px; height: 66px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35); z-index: 25; animation: waFabPulse 2.4s ease-in-out infinite; transition: background .2s, color .2s, box-shadow .2s, transform .1s;" style-hover="background: #7a6c43; transform: translateY(-2px) scale(1.06); animation-play-state: paused;">
     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path d="M8.5 9.2c0-.4.2-.8.5-1l.7-.6c.3-.2.7-.2.9.1l1 1.9c.2.3.1.6-.1.9l-.6.7c.5 1.2 1.5 2.2 2.7 2.7l.7-.6c.3-.2.6-.3.9-.1l1.9 1c.3.2.3.6.1.9l-.6.7c-.2.3-.6.5-1 .5-3.9-.3-6.9-3.3-7.1-7.1z"/></svg>
   </a>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;headerPadY&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:2,&quot;min&quot;:2,&quot;max&quot;:16,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;headerLogo&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:44,&quot;min&quot;:32,&quot;max&quot;:64,&quot;step&quot;:2,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;navFont&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:15,&quot;min&quot;:12,&quot;max&quot;:17,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;الشريط العلوي&quot;},&quot;ctaRadius&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:12,&quot;min&quot;:0,&quot;max&quot;:24,&quot;step&quot;:1,&quot;unit&quot;:&quot;px&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;زر تواصل معنا&quot;}}">
 class Component extends DCLogic {
-  state = { active: '#home', svActive: 0, svW: 0, mobileMenuOpen: false, svModalOpen: false, svModalIndex: 0 };
+  state = { active: '#home', svActive: 0, svW: 0, mobileMenuOpen: false, svModalOpen: false, svModalIndex: 0, aboutTab: 0 };
   _svRef = React.createRef();
   _toggleMobileMenu = () => this.setState((s) => ({ mobileMenuOpen: !s.mobileMenuOpen }));
   _closeMobileMenuOnDesktop = () => { if (window.innerWidth > 768 && this.state.mobileMenuOpen) this.setState({ mobileMenuOpen: false }); };
@@ -346,7 +380,8 @@ class Component extends DCLogic {
   }
   _restartSvLoop() {
     if (this._svT) clearInterval(this._svT);
-    this._svT = setInterval(() => { if (!this.state.svModalOpen && !this._svModalPending) this._svGo((this.state.svActive + 1) % 8); }, 2000);
+    const svCount = (this._svBase && this._svBase.length) || 8;
+    this._svT = setInterval(() => { if (!this.state.svModalOpen && !this._svModalPending) this._svGo((this.state.svActive + 1) % svCount); }, 3000);
   }
   _openSvModal = (k, svIndex) => {
     this._restartSvLoop();
@@ -409,46 +444,42 @@ class Component extends DCLogic {
       };
     });
     const services = [
-      { title: 'الأوقاف والوصايا', img: 'assets/uploads/Gemini_Generated_Image_ehqhz0ehqhz0ehqh.png', slotId: 'svc-1', slotLabel: 'أيقونة/صورة الخدمة', items: [
+      { title: 'الأوقاف والوصايا', img: 'assets/uploads/services/wills-endowments.webp', slotId: 'svc-1', slotLabel: 'أيقونة/صورة الخدمة', items: [
         'صياغة وثائق الأوقاف والوصايا على الوجه الشرعي والنظامي',
         'هيكلة الأوقاف',
         'صياغة وإعداد اللوائح والملاحق الخاصة بالأوقاف أو الجمعيات أو الصناديق العائلية، والمذكرات والأبحاث الخاصة بها، وتفسير جميع العقود الخاصة بها',
         'تقديم خدمات المحاماة',
         'تقديم استشارات قانونية مجانية',
       ]},
-      { title: 'التقاضي وتسوية المنازعات', img: 'assets/uploads/Gemini_Generated_Image_rvhtchrvhtchrvht.png', slotId: 'svc-2', slotLabel: 'أيقونة/صورة الخدمة', items: [
-        'الترافع وتقديم اللوائح والمذكرات أمام جميع المحاكم بمختلف درجاتها',
-        'الاعتراضات أمام محاكم الاستئناف والتماس إعادة النظر',
-        'تنفيذ الأحكام المحلية والأجنبية والقرارات الصادرة عن الجهات القضائية وهيئات التحكيم',
-        'تقديم خدمات المحاماة',
-        'تقديم استشارات قانونية مجانية',
+      { title: 'القضايا الجنائية', img: 'assets/uploads/services/criminal-cases.webp', slotId: 'svc-2', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'نتولى الترافع والدفاع في مختلف القضايا الجنائية، مع تقديم الاستشارات القانونية، وحضور التحقيقات، وتمثيل الموكلين أمام الجهات المختصة والمحاكم، بما يضمن حماية حقوقهم وفقًا للأنظمة.',
       ]},
-      { title: 'الشركات والاستثمار', img: 'assets/uploads/Gemini_Generated_Image_1jadcg1jadcg1jad.png', slotId: 'svc-3', slotLabel: 'أيقونة/صورة الخدمة', items: [
-        'تأسيس الشركات التجارية والمختلطة بكافة أنواعها وإتمام طور التصفية الرضائية وتسييل الأصول والموجودات',
-        'تحويل المؤسسات إلى شركات',
-        'إدارة الصفقات الخاصة وحوكمة الشركات',
-        'أعمال التصفية والدمج والاستحواذ',
-        'تسجيل الوكالات والأسماء والعلامات التجارية',
-        'تأسيس وحماية حقوق براءات الاختراع',
-        'أعمال المساندة والتمثيل لرجال وسيدات الأعمال والمنشآت في عمليات التفاوض وإتمام أعمال الصفقات التجارية',
-        'التمثيل القانوني في الجمعيات العمومية العادية وغير العادية وإبداء الرأي القانوني فيما يتعلق بالإجراءات اللازمة لانعقادها',
-        'تقديم الاستشارات القانونية للشركات بجميع أنواعها والشركات المساهمة المدرجة في السوق المالية',
-        'تقديم خدمات المحاماة للشركات',
-        'تقديم استشارات قانونية مجانية',
+      { title: 'القضايا الإدارية', img: 'assets/uploads/services/administrative-cases.webp', slotId: 'svc-3', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'نقدم خدمات الترافع في المنازعات الإدارية أمام المحاكم الإدارية، بما يشمل الطعن في القرارات الإدارية، وقضايا العقود الحكومية، والمطالبات المالية، والدعاوى المتعلقة بالجهات الحكومية.',
       ]},
-      { title: 'الاستشارات والدراسات القانونية والعقود', img: 'assets/uploads/Gemini_Generated_Image_fqtz7bfqtz7bfqtz.png', slotId: 'svc-4', slotLabel: 'أيقونة/صورة الخدمة', items: [
-        'إعداد ومراجعة وصياغة كافة العقود والاتفاقيات ومذكرات التفاهم في كافة التخصصات بما يخدم مصلحة عملائنا',
-        'إعداد ومراجعة وصياغة اتفاقيات عدم المنافسة واتفاقيات سرية المعلومات وإبرام المخالصات وإجراءات التسويات واتفاقيات الصلح',
-        'إعداد وصياغة عقود الاندماج والاستحواذ للشركات',
-        'إعداد وصياغة ومراجعة الأنظمة الأساسية للشركات ولوائح الحوكمة والمراجعة الداخلية بما يتفق مع الأنظمة',
-        'تقديم المشورة القانونية للمستثمرين الأجانب من حيث الأنظمة المتبعة في المملكة، ورأس المال، والضريبة المفروضة، وبيان حقوق المستثمر، واقتراح الحلول القانونية لمعالجة الإشكالات القانونية',
-        'تأسيس الشركات الأجنبية أو المختلطة وفروعها، وإصدار التراخيص والسجلات التجارية للمستثمر الأجنبي، وتقديم الاستشارات والحلول النموذجية لمكافحة الإغراق والممارسات الضارة في التجارة الدولية وسبل مواجهتها',
-        'تقديم خدمات المحاماة',
-        'تقديم استشارات قانونية مجانية',
+      { title: 'القضايا العمالية', img: 'assets/uploads/services/labor-cases.webp', slotId: 'svc-4', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'نمثل أصحاب العمل والموظفين في جميع المنازعات العمالية، بدءًا من التسويات الودية وحتى الترافع أمام المحاكم العمالية.',
+      ]},
+      { title: 'القضايا التجارية', img: 'assets/uploads/services/commercial-cases.webp', slotId: 'svc-5', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'نقدم خدمات التقاضي والاستشارات في المنازعات التجارية، وقضايا الشركات، والعقود، والأوراق التجارية.',
+      ]},
+      { title: 'قضايا الأحوال الشخصية', img: 'assets/uploads/services/personal-status-cases.webp', slotId: 'svc-6', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'نتولى قضايا الطلاق، والنفقة، والحضانة، والزيارة، وتقسيم التركات، وغيرها من مسائل الأحوال الشخصية.',
+      ]},
+      // تم حل مشكلة العلامة المائية بصورة enforcement عبر قص 183px من الأسفل (28 يوليو 2026) — الصورة الحالية نهائية.
+      { title: 'التنفيذ', img: 'assets/uploads/services/enforcement.webp', slotId: 'svc-7', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'نتابع إجراءات تنفيذ الأحكام والسندات التنفيذية، واتخاذ جميع الإجراءات النظامية لضمان استيفاء الحقوق.',
+      ]},
+      { title: 'صياغة العقود', img: 'assets/uploads/services/contract-drafting.webp', slotId: 'svc-8', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'إعداد ومراجعة العقود والاتفاقيات بمختلف أنواعها، بما يضمن سلامتها القانونية ويحفظ حقوق جميع الأطراف.',
+      ]},
+      { title: 'الاستشارات القانونية', img: 'assets/uploads/services/legal-consultations.webp', slotId: 'svc-9', slotLabel: 'أيقونة/صورة الخدمة', items: [
+        'تقديم استشارات قانونية دقيقة وعملية للأفراد والشركات لمساعدتهم على اتخاذ القرارات القانونية السليمة.',
       ]},
     ];
     const svBase = services;
-    const svSlots = 8, cardW = 300, gap = 24;
+    this._svBase = svBase;
+    const svSlots = svBase.length, cardW = 300, gap = 24;
     this._prevRels = this._prevRels || {};
     const svCards = [];
     for (let k = 0; k < svSlots; k++) {
@@ -533,6 +564,101 @@ class Component extends DCLogic {
       position: 'absolute', inset: 0,
       background: "url('" + svModalService.img + "') center / cover no-repeat #e8ecf2",
     };
+    const aboutTabsMeta = [
+      {
+        label: 'نبذة عنا',
+        paragraphs: [
+          'تأسست شركة تراءي للمحاماة والاستشارات القانونية في مدينة جدة بالمملكة العربية السعودية عام 2023م (1444هـ) ليستفيد من خدماتها القانونية المتنوعة قطاعات مختلفة ولتصبح إحدى الكيانات الغير تقليدية والمتميزة على الصعيد المحلي والدولي. لقد سعينا للاستفادة من التجارب والخبرات بالدول المتقدمة، وإيماناً منا بذلك قمنا باستقطاب أصحاب المؤهلات العلمية والعملية والخبرات الواسعة في المجال القانوني والذين خاضوا التجارب بالقطاع الحكومي والقطاع الخاص من أجل تحقيق هذه الرؤية الطموحة.',
+          'تقدم شركة تراءي للمحاماة والاستشارات القانونية خدمات المحاماة والاستشارات القانونية الرائدة والمتقدمة، حيث نوفر لعملائنا خدمات قانونية متخصصة وبشكل احترافي من خلال الخدمة الشخصية وعبر الاهتمام بالتفاصيل الدقيقة لقضاياهم، مع حرصنا على توفير الجهد والمصاريف المالية عليهم.',
+        ],
+        items: [],
+        showBadges: true,
+      },
+      {
+        label: 'رؤيتنا',
+        paragraphs: [
+          'التميز في تقديم خدمات المحاماة والاستشارات القانونية الموثوقة وفقاً لأعلى معايير الجودة وأفضل المنهجيات القانونية وأحدث الممارسات الدولية.',
+        ],
+        items: [],
+        showBadges: false,
+      },
+      {
+        label: 'رسالتنا',
+        paragraphs: [
+          'توفير قيمة مضافة لعملائنا وتلبية احتياجاتهم القانونية، وتوفير التمثيل القانوني الملتزم بالأخلاقيات المهنية، بالإضافة الى مسؤوليتنا الاجتماعية في ترسيخ مفهوم العدالة وسيادة القانون والمساهمة الفاعلة في تعزيز الوعي القانوني لدى المجتمع السعودي والمساعدة الايجابية في تحقيق رؤية السعودية 2030.',
+          'نطمح أن نكون في الصدارة وعنوان للتخصصية والاحترافية بعملنا، من خلال الريادة والابداع في خدمات المحاماة والاستشارات القانونية لتحقيق رضا العملاء وكسب ثقتهم.',
+        ],
+        items: [],
+        showBadges: false,
+      },
+      {
+        label: 'قيمنا',
+        paragraphs: [
+          'نعتمد في عملنا على التطبيق العملي للقيم التي نؤمن بها، وأهمها:',
+        ],
+        items: [
+          'النزاهة والشفافية في كل إجراءات وخطوات العمل ومع جميع المتعاملين',
+          'الانضباط والالتزام ومراقبة الامتثال القانوني',
+          'التطوير والتحسين المستمر والدائم باتباع منهجيات قانونية مبتكرة ومبدعة',
+          'العمل بروح الفريق الواحد',
+        ],
+        showBadges: false,
+      },
+      {
+        label: 'أهدافنا',
+        paragraphs: [
+          'نسعى بجد لتحقيق مجموعة من الأهداف المتناغمة، ومن أهمها:',
+        ],
+        items: [
+          'المسؤولية المهنية حسب أفضل المعايير المحلية والعالمية',
+          'الالتزام الكامل بالأخلاقيات السامية لمهنة المحاماة',
+          'توفير أفضل الحلول القانونية لقطاعات مختلفة ولمجموعة واسعة من المستفيدين',
+        ],
+        showBadges: false,
+      },
+    ];
+    const aboutTab = this.state.aboutTab || 0;
+    const aboutTabs = aboutTabsMeta.map((t, i) => {
+      const isOn = aboutTab === i;
+      return {
+        label: t.label,
+        select: () => this.setState({ aboutTab: i }),
+        style: {
+          padding: '10px 18px', fontSize: '13px', fontWeight: 'bold',
+          borderTop: '1px solid ' + (isOn ? 'rgba(145, 129, 81, 0.35)' : 'transparent'),
+          borderRight: '1px solid ' + (isOn ? 'rgba(145, 129, 81, 0.35)' : 'transparent'),
+          borderLeft: '1px solid ' + (isOn ? 'rgba(145, 129, 81, 0.35)' : 'transparent'),
+          borderBottom: isOn ? '1px solid #ffffff' : '1px solid transparent',
+          borderRadius: '10px 10px 0 0',
+          background: isOn ? '#ffffff' : 'rgba(145, 129, 81, 0.12)',
+          color: isOn ? '#0b3a7a' : '#6b5d3f',
+          cursor: 'pointer', whiteSpace: 'nowrap', position: 'relative', top: '1px',
+          zIndex: isOn ? 2 : 1,
+          transition: 'background .2s, color .2s, border-color .2s',
+        },
+      };
+    });
+    const aboutActive = aboutTabsMeta[aboutTab];
+    let aboutLineIdx = 0;
+    const aboutLineStyle = (extra) => Object.assign({
+      fontSize: '15px', fontWeight: 'bold', lineHeight: 2, color: '#2c3e5d',
+      textAlign: 'justify', textJustify: 'inter-word', textAlignLast: 'right', margin: '0 0 14px',
+      animation: 'slideFromRightShort 0.8s ease-out ' + ((aboutLineIdx++) * 0.12) + 's both',
+    }, extra || {});
+    const aboutParagraphs = aboutActive.paragraphs.map((text) => ({ text, style: aboutLineStyle() }));
+    const aboutItems = aboutActive.items.map((text) => ({ text, style: aboutLineStyle({ margin: '0 0 10px' }) }));
+    const aboutHasItems = aboutActive.items.length > 0;
+    const aboutShowBadges = !!aboutActive.showBadges;
+    const aboutBadge1Style = { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#0b3a7a', animation: 'slideFromRightShort 0.8s ease-out ' + ((aboutLineIdx++) * 0.12) + 's both' };
+    const aboutBadge2Style = { display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#0b3a7a', animation: 'slideFromRightShort 0.8s ease-out ' + ((aboutLineIdx++) * 0.12) + 's both' };
+    const aboutTabKey = 'about-tab-' + aboutTab;
+    const aboutBoxStyle = {
+      position: 'relative', zIndex: 1, background: '#ffffff',
+      border: '1px solid rgba(145, 129, 81, 0.35)', borderRadius: '0 12px 12px 12px',
+      boxShadow: '0 6px 18px rgba(11, 58, 122, 0.08)', padding: '24px 26px',
+      minHeight: '300px', boxSizing: 'border-box',
+    };
+    const aboutListStyle = { margin: '0 0 14px', padding: '0 20px 0 0' };
     return {
       services, team, navItems,
       svRef: this._svRef, svTrackStyle, svDots, svCards,
@@ -544,6 +670,8 @@ class Component extends DCLogic {
       mobileMenuOpen, mobileMenuPanelStyle, hamburgerIconStyle, closeIconStyle,
       svModalOpen, svModalService, svModalImgStyle,
       closeSvModal: this._closeSvModal, stopSvModalClick: this._stopSvModalClick,
+      aboutTabs, aboutTabKey, aboutParagraphs, aboutItems, aboutHasItems, aboutShowBadges,
+      aboutBadge1Style, aboutBadge2Style, aboutBoxStyle, aboutListStyle,
     };
   }
 }
