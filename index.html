@@ -26,7 +26,7 @@
 <x-dc>
 <helmet>
 <style>
-  body { margin: 0; background: #ffffff; font-family: Georgia, 'Times New Roman', 'Traditional Arabic', serif; }
+  body { margin: 0; background: linear-gradient(to bottom left, #ffffff 0%, #f6f1e4 100%); background-attachment: fixed; font-family: Georgia, 'Times New Roman', 'Traditional Arabic', serif; }
   @keyframes cardRiseUp { from { translate: 0 90px; } to { translate: 0 0; } }
   @keyframes popFromCenter { from { opacity: 0; transform: scale(0.3); filter: blur(6px); } 70% { filter: blur(2px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
   @keyframes svModalFade { from { opacity: 0; } to { opacity: 1; } }
@@ -59,6 +59,7 @@
   .team-card-item { flex: 0 0 257px; }
   .contact-address-text { white-space: nowrap; }
   @media (max-width: 768px) {
+    body { background-attachment: scroll !important; }
     .dc-nav-link { display: none !important; }
     .dc-header-wa { display: none !important; }
     .dc-header-cta { display: none !important; }
