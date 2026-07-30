@@ -57,6 +57,7 @@
   html { scroll-behavior: smooth; }
   section[id] { scroll-margin-top: 64px; }
   .team-card-item { flex: 0 0 257px; }
+  .contact-address-text { white-space: nowrap; }
   @media (max-width: 768px) {
     .dc-nav-link { display: none !important; }
     .dc-header-wa { display: none !important; }
@@ -69,6 +70,7 @@
     .team-card-name { font-size: 15px !important; }
     .team-card-avatar { width: 48px !important; height: 48px !important; margin-bottom: 10px !important; }
     .hero-subtitle { white-space: normal !important; }
+    .contact-address-text { white-space: normal !important; }
     h2 { font-size: 25px !important; }
     .about-tab { font-size: 9px !important; padding: 6px 8px !important; }
     .about-tabs-row { gap: 2px !important; }
@@ -316,13 +318,13 @@
       <h2 class="reveal-anim" style="margin: 0 0 14px; font-size: 30px; color: #ffffff; animation: contactTitlePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.78s both;">تواصل معنا الآن</h2>
       <div class="reveal-anim" style="width: 64px; height: 3px; background: #918151; border-radius: 999px; margin-bottom: 30px; animation: slideFromRight 0.8s ease-out 1.86s both;"></div>
 
-      <a href="https://maps.app.goo.gl/5amQuaUsDAbYDApf8" target="_blank" rel="noopener noreferrer" class="reveal-anim" style="display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(200, 185, 140, 0.25); border-radius: 14px; padding: 12px 16px; max-width: 460px; width: 100%; box-sizing: border-box; text-align: right; text-decoration: none; transition: border-color .2s, background .2s, transform .2s; animation: riseIn 0.8s ease-out 2.4s both;" style-hover="border-color: #c8b98c; background: rgba(255, 255, 255, 0.1); transform: translateY(-2px);">
+      <a href="https://maps.app.goo.gl/5amQuaUsDAbYDApf8" target="_blank" rel="noopener noreferrer" class="reveal-anim contact-address-box" style="display: flex; align-items: center; gap: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(200, 185, 140, 0.25); border-radius: 14px; padding: 12px 16px; max-width: 480px; width: 100%; box-sizing: border-box; text-align: right; text-decoration: none; transition: border-color .2s, background .2s, transform .2s; animation: riseIn 0.8s ease-out 2.4s both;" style-hover="border-color: #c8b98c; background: rgba(255, 255, 255, 0.1); transform: translateY(-2px);">
         <div style="width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #a3905c, #918151); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
         </div>
         <div style="display: flex; flex-direction: column;">
           <span style="font-size: 12px; color: #c8b98c;">موقع المكتب</span>
-          <span style="font-size: 16px; color: #ffffff; font-weight: bold;">مركز العلي للأعمال، الأمير ماجد، الربوة، جدة 23449 — الدور الثاني، مكتب 204</span>
+          <span class="contact-address-text" style="font-size: 16px; color: #ffffff; font-weight: bold;">مركز العلي للأعمال، الأمير ماجد، الربوة، جدة — الدور الثاني، مكتب 204</span>
         </div>
       </a>
     </div>
