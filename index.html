@@ -56,13 +56,15 @@
   a { color: #0b3a7a; text-decoration: none; } a:hover { color: #2a73ab; }
   html { scroll-behavior: smooth; }
   section[id] { scroll-margin-top: 64px; }
+  .team-card-item { flex: 0 0 257px; }
   @media (max-width: 768px) {
     .dc-nav-link { display: none !important; }
     .dc-header-wa { display: none !important; }
     .dc-header-cta { display: none !important; }
     .dc-hamburger { display: flex !important; }
     #team { padding: 32px 20px 40px !important; }
-    .team-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+    .team-grid { gap: 14px !important; }
+    .team-card-item { flex: 0 0 calc(50% - 7px) !important; }
     .team-card { padding: 20px 12px !important; min-height: 172px !important; }
     .team-card-name { font-size: 15px !important; }
     .team-card-avatar { width: 48px !important; height: 48px !important; margin-bottom: 10px !important; }
@@ -235,13 +237,13 @@
       <h2 style="margin: 0; font-size: 30px; color: #0b3a7a;">محامون ومستشارون بخبرات ممتدة</h2>
       <div style="width: 64px; height: 3px; background: #918151; border-radius: 999px; margin: 16px auto 0;"></div>
     </div>
-    <div class="team-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 1100px; margin: 0 auto;">
+    <div class="team-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; max-width: 1100px; margin: 0 auto;">
       <sc-for list="{{ teamCards }}" as="tm" hint-placeholder-count="7">
-        <div data-reveal data-reveal-anim="drop" style="{{ tm.wrapStyle }}">
+        <div class="team-card-item" data-reveal data-reveal-anim="drop" style="{{ tm.wrapStyle }}">
           <div class="team-card" onClick="{{ tm.select }}" style="background: #ffffff; border: 1.5px solid rgba(163, 144, 92, 0.45); border-radius: 16px; padding: 30px 18px 26px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 215px; height: 100%; box-sizing: border-box; box-shadow: 0 4px 16px rgba(13, 52, 102, 0.08); transition: transform .2s, box-shadow .2s, border-color .2s; cursor: pointer;" style-hover="transform: scale(1.04) translateY(-3px); box-shadow: 0 10px 26px rgba(13, 52, 102, 0.14); border-color: #a3905c;">
             <div class="team-card-avatar" style="width: 60px; height: 60px; border-radius: 50%; padding: 2px; background: linear-gradient(135deg, #c8b98c, #918151); margin-bottom: 14px; flex-shrink: 0;">
               <div style="width: 100%; height: 100%; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
-                <span style="font-size: 22px; font-weight: bold; color: #0d3466; line-height: 1;">{{ tm.initial }}</span>
+                <img src="assets/brand/logo-64.png" alt="تراءي" width="36" height="36" loading="lazy" style="display: block;">
               </div>
             </div>
             <div class="team-card-name" style="font-size: 17px; font-weight: bold; color: #0d3466; line-height: 1.5;">{{ tm.name }}</div>
@@ -260,7 +262,7 @@
         <div style="position: relative; width: 100%; height: 200px; overflow: hidden; border-radius: 20px 20px 0 0; background: url('assets/brand/services-bg.png') center / cover no-repeat, radial-gradient(ellipse at center, #0d3466 0%, #082548 45%, #03122b 100%); display: flex; align-items: center; justify-content: center;">
           <div style="{{ teamModalAvatarStyle }}">
             <div style="width: 100%; height: 100%; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center;">
-              <span style="font-size: 40px; font-weight: bold; color: #0d3466; line-height: 1;">{{ teamModalMember.initial }}</span>
+              <img src="assets/brand/logo-64.png" alt="تراءي" width="56" height="56" loading="lazy" style="display: block;">
             </div>
           </div>
         </div>
@@ -540,13 +542,12 @@ class Component extends DCLogic {
     ];
     const teamCards = teamMembers.map((m, i) => ({
       name: m.name,
-      initial: m.name.charAt(0),
       wrapStyle: { transitionDelay: (i * 0.15) + 's' },
       select: () => this._openTeamModal(i),
     }));
     const teamModalOpen = !!this.state.teamModalOpen;
     const teamModalIndex = this.state.teamModalIndex || 0;
-    const teamModalMember = Object.assign({ initial: teamMembers[teamModalIndex] ? teamMembers[teamModalIndex].name.charAt(0) : '' }, teamMembers[teamModalIndex] || teamMembers[0]);
+    const teamModalMember = teamMembers[teamModalIndex] || teamMembers[0];
     const teamModalAvatarStyle = {
       width: '100px', height: '100px', borderRadius: '50%', padding: '3px',
       background: 'linear-gradient(135deg, #c8b98c, #918151)', flexShrink: 0,
